@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameUI,finishUI;
     private int heartCount = 3;
     [SerializeField] private Image[] hearts;
+    private PlayFabLogin playFabLogin;
     private void Start()
     {
+        playFabLogin = FindObjectOfType<PlayFabLogin>();
         SpawnNewButtons();
       
         scoreText.text = " Score " + score.ToString();
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
             gameUI.SetActive(false);
             finishUI.SetActive(true);
             SpawnButtonsPanel.gameObject.SetActive(false);
+            playFabLogin.SendLeaderBoard(score);
         }
        
     }
